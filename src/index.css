@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  /* Earthy, slate, off-white, charcoal, muted gold palette */
+  --color-bone: #f4f1ea;
+  --color-bone-50: #faf8f3;
+  --color-bone-100: #f4f1ea;
+  --color-bone-200: #e8e3d8;
+  --color-sand: #d8cfbe;
+  --color-clay: #b6a489;
+  --color-stone: #8a8378;
+  --color-slate-warm: #5b5a54;
+  --color-charcoal: #2a2925;
+  --color-ink: #1a1916;
+  --color-obsidian: #121110;
+  --color-gold: #0a3a82; /* Tubudis Blue */
+  --color-gold-soft: #1c52a3;
+  --color-gold-pale: #5b8ad4;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Inter Tight", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--color-bone-100);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-bone-50);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bone-200);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-clay);
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-stone);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.tracking-eyebrow {
+  letter-spacing: 0.28em;
+}
+
+/* Subtle grain texture overlay utility */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  55% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+.animate-scroll-line {
+  animation: scrollLine 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
